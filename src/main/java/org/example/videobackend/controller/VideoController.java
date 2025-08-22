@@ -28,12 +28,6 @@ public class VideoController {
         this.videoRepository = videoRepository;
     }
 
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadVideo(@RequestParam("file") MultipartFile file, @RequestParam("name") String name) {
-        Video savedVideo = videoService.saveVideo(file, name);
-        return ResponseEntity.ok("Video saved with Cloudinary URL: " + savedVideo.getVideoFileName());
-    }
-
     // The key for streaming
     // AFTER
     @GetMapping("/videos/{filename:.+}") // Use .+ to handle filenames with dots
